@@ -8,4 +8,4 @@ while True:
     success,img = cap.read()
     hands,img = detector.findHands(img)
     cv2.imshow("Image",img)
-    cv2.waitkey(1)
+    cv2.waitKey(1)
