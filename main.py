@@ -49,4 +49,4 @@ while True:
     if key == ord("s"):
         counter += 1
         cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
-        print(counter)
+        print(counter)
