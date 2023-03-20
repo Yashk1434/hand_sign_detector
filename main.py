@@ -16,7 +16,7 @@ imgSize = 300
 folder = "Data/C"
 counter = 0
 
-labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I"]
+labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
 @web.route('/')
 def index():
