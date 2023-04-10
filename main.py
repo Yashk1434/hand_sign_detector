@@ -16,7 +16,7 @@ imgSize = 300
 folder = "Data/C"
 counter = 0
 
-labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Calm Down", "Hello", "Love", "Stand", "Thumbs Up", "Where"]
 
 @web.route('/')
 def index():
@@ -29,7 +29,7 @@ def gen_frames():
             break
         else:
             while True:
-                success, im
+                success, img
                 imgOutput = img.copy()
                 hands, img = detector.findHands(img)
                 if hands:

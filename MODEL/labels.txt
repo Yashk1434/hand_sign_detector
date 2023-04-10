@@ -24,3 +24,9 @@
 23 X
 24 Y
 25 Z
+26 Calm Down
+27 Hello
+28 Love
+29 Stand
+30 Thumbs Up
+31 Where
