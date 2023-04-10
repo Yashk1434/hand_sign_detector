@@ -29,7 +29,7 @@ def gen_frames():
             break
         else:
             while True:
-                success, img = camera.read()
+                success, im
                 imgOutput = img.copy()
                 hands, img = detector.findHands(img)
                 if hands:
