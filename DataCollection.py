@@ -52,4 +52,3 @@ while True:
         print(counter)
 
 
-s
