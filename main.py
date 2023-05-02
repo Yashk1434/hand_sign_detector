@@ -5,10 +5,10 @@ from cvzone.ClassificationModule import Classifier
 import numpy as np
 import math
 
-web = Flask(__name__)
-camera = cv2.VideoCapture(0)
-detector = HandDetector(maxHands=1)
-classifier = Classifier("Model/keras_model.h5", "Model/labels.txt")
+web = Flask(__name__)    #Initializing Flask
+camera = cv2.VideoCapture(0)   #to get Webcam feed into the variable camera
+detector = HandDetector(maxHands=1)    #Uses prebuilt function from CV Zone to detect Hands
+classifier = Classifier("Model/keras_model.h5", "Model/labels.txt")   #Classifier to classify given input
 
 offset = 20
 imgSize = 300
@@ -17,9 +17,9 @@ folder = "Data/C"
 counter = 0
 
 labels = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Calm Down", "Hello", "Love", "Stand", "Thumbs Up", "Where"]
-
-@web.route('/')
-def index():
+#Labels which are going to be shown on on the User Output screen
+@web.route('/') #making the homepage/indexpage of our website
+def index(): #purpose is to render the index.html file
     return render_template('index.html')
 
 def gen_frames():
@@ -34,26 +34,27 @@ def gen_frames():
                 hands, img = detector.findHands(img)
                 if hands:
                     hand = hands[0]
-                    x, y, w, h = hand['bbox']
+                    x, y, w, h = hand['bbox']     #assigning bounding box co-ord
 
-                    imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255
+                    imgWhite = np.ones((imgSize, imgSize, 3), np.uint8) * 255     #for even img(square)
                     imgCrop = img[y - offset:y + h + offset, x - offset:x + w + offset]
 
                     imgCropShape = imgCrop.shape
 
+                    # adjusting the cropped img in white img
                     aspectRatio = h / w
 
-                    if aspectRatio > 1:
+                    if aspectRatio > 1:     #for height of the bounding box
                         k = imgSize / h
                         wCal = math.ceil(k * w)
                         imgResize = cv2.resize(imgCrop, (wCal, imgSize))
                         imgResizeShape = imgResize.shape
-                        wGap = math.ceil((imgSize - wCal) / 2)
+                        wGap = math.ceil((imgSize - wCal) / 2)     #adjusting img in the centre of the bounding box
                         imgWhite[:, wGap:wCal + wGap] = imgResize
                         prediction, index = classifier.getPrediction(imgWhite, draw=False)
                         print(prediction, index)
 
-                    else:
+                    else:               #for width of the bounding box
                         k = imgSize / w
                         hCal = math.ceil(k * h)
                         imgResize = cv2.resize(imgCrop, (imgSize, hCal))
@@ -78,5 +79,5 @@ def gen_frames():
 @web.route('/video_feed')
 def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
-if __name__=='__main__':
-    web.run(debug=True)
+if __name__=='__main__': #if name=main then run web
+    web.run(debug=True)  #debug: when we make any changes in our code, we only need to refresh the webpage and not reopen the server
