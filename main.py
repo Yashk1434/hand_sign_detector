@@ -4,7 +4,7 @@ from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
 import numpy as np
 import math
-#hello
+
 web = Flask(__name__)    #Initializing Flask
 camera = cv2.VideoCapture(0)   #to get Webcam feed into the variable camera
 detector = HandDetector(maxHands=1)    #Uses prebuilt function from CV Zone to detect Hands
