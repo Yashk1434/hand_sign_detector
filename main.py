@@ -70,14 +70,15 @@ def gen_frames():
                     cv2.rectangle(imgOutput, (x - offset, y - offset),
                                   (x + w + offset, y + h + offset), (70, 252, 255), 6)
 
-                    ret, buffer = cv2.imencode('.jpg', imgOutput)
-                    frame = buffer.tobytes()
-                    yield (b'--frame\r\n'
+                    ret, buffer = cv2.imencode('.jpg', imgOutput)   #converting into jpeg format
+                    frame = buffer.tobytes()    #converting into bytes
+                    yield (b'--frame\r\n'       #creating a html render template
                            b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
+                    #We will be displaying a frame with some para (\r\n). the content type of the frame is image
+                    #then display the frame
 
 @web.route('/video_feed')
 def video_feed():
-    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame') #mimetype Descrbes what kind of response html will be receiving
 if __name__=='__main__': #if name=main then run web
     web.run(debug=True)  #debug: when we make any changes in our code, we only need to refresh the webpage and not reopen the server
