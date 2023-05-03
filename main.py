@@ -29,9 +29,9 @@ def gen_frames():
             break
         else:
             while True:
-                success, img = camera.read()
-                imgOutput = img.copy()
-                hands, img = detector.findHands(img)
+                success, img = camera.read()  #Input from webcam is read
+                imgOutput = img.copy()        #it is copied in imgOutput to get output without skeletal points
+                hands, img = detector.findHands(img)  #to get detect hands
                 if hands:
                     hand = hands[0]
                     x, y, w, h = hand['bbox']     #assigning bounding box co-ord
@@ -44,6 +44,7 @@ def gen_frames():
                     # adjusting the cropped img in white img
                     aspectRatio = h / w
 
+                    #if image is vertical
                     if aspectRatio > 1:     #for height of the bounding box
                         k = imgSize / h
                         wCal = math.ceil(k * w)
@@ -54,6 +55,7 @@ def gen_frames():
                         prediction, index = classifier.getPrediction(imgWhite, draw=False)
                         print(prediction, index)
 
+                    #if image is horizontal
                     else:               #for width of the bounding box
                         k = imgSize / w
                         hCal = math.ceil(k * h)
