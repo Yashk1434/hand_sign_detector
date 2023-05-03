@@ -47,12 +47,12 @@ def gen_frames():
                     #if image is vertical
                     if aspectRatio > 1:     #for height of the bounding box
                         k = imgSize / h
-                        wCal = math.ceil(k * w)
-                        imgResize = cv2.resize(imgCrop, (wCal, imgSize))
+                        wCal = math.ceil(k * w)  #Math.ceil() always rounds up and returns the smaller integer greater than or equal to a given number
+                        imgResize = cv2.resize(imgCrop, (wCal, imgSize)) #cv2.resize() function is that the tuple passed for determining the size of the new image
                         imgResizeShape = imgResize.shape
                         wGap = math.ceil((imgSize - wCal) / 2)     #adjusting img in the centre of the bounding box
-                        imgWhite[:, wGap:wCal + wGap] = imgResize
-                        prediction, index = classifier.getPrediction(imgWhite, draw=False)
+                        imgWhite[:, wGap:wCal + wGap] = imgResize  #for putting the image in white background
+                        prediction, index = classifier.getPrediction(imgWhite, draw=False) #getting the prediction
                         print(prediction, index)
 
                     #if image is horizontal
@@ -67,8 +67,12 @@ def gen_frames():
 
                    # cv2.rectangle(imgOutput, (x-offset , y - offset -50),
                        #           (x - offset + 270, y - offset - 50+50), (255, 0, 255), cv2.FILLED)
+
+                    #text settings
                     cv2.putText(imgOutput, labels[index], (x-offset, y - 26), cv2.FONT_HERSHEY_COMPLEX, 1.3, (255,78,63), #color values in BGR
                                 3)
+
+                    #bounding box settings
                     cv2.rectangle(imgOutput, (x - offset, y - offset),
                                   (x + w + offset, y + h + offset), (70, 252, 255), 6)
 
