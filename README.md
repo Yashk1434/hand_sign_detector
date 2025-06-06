@@ -103,10 +103,3 @@ You should now see your webcam feed and real-time hand sign detection with label
 This project is for educational, personal, and research purposes only.
 
 ---
-
-## 🙌 Acknowledgements  
-
-- **cvzone** by Murtaza Hassan  
-- **TensorFlow / Keras** community  
-- American Sign Language (ASL) community and references  
-
