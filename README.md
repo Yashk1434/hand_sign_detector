@@ -8,14 +8,13 @@ A real-time hand sign language detection system built using **OpenCV**, **Flask*
 
 ### 🔵 Real-Time Hand Sign Detection  
 
-![Real-Time Detection](https://github.com/user-attachments/assets/f1c49d65-c580-40db-b7a5-ed6cb97cea21)
+<img src="https://github.com/user-attachments/assets/f1c49d65-c580-40db-b7a5-ed6cb97cea21" width="400"/>
 
 ---
 
 ### 🔤 ASL Signs Reference  
 
-![ASL Signs](https://github.com/user-attachments/assets/d946abec-ecc8-4141-84ab-13ba6f944fd9)
-
+<img src="https://github.com/user-attachments/assets/d946abec-ecc8-4141-84ab-13ba6f944fd9" width="400"/>
 
 ---
 
