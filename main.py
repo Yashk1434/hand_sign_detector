@@ -88,3 +88,5 @@ def video_feed():
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame') #mimetype Descrbes what kind of response html will be receiving
 if __name__=='__main__': #if name=main then run web
     web.run(debug=True)  #debug: when we make any changes in our code, we only need to refresh the webpage and not reopen the server
+
+
